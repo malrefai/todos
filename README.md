@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/malrefai/todos.svg?branch=develop)](https://travis-ci.org/malrefai/todos)
 
 ## Todos App
 
