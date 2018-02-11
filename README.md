@@ -1,8 +1,10 @@
+## Todos App  
+
 [![Build Status](https://travis-ci.org/malrefai/todos.svg?branch=develop)](https://travis-ci.org/malrefai/todos)
+[![Coverage Status](https://coveralls.io/repos/github/malrefai/todos/badge.svg)](https://coveralls.io/github/malrefai/todos)  
 
-## Todos App
 
-This is just a simple .. 
+This is just a simple ..     
 
 ## Technology Stack
 
