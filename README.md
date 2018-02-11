@@ -3,7 +3,8 @@
 [![Build Status](https://travis-ci.org/malrefai/todos.svg?branch=develop)](https://travis-ci.org/malrefai/todos)
 [![Coverage Status](https://coveralls.io/repos/github/malrefai/todos/badge.svg)](https://coveralls.io/github/malrefai/todos)
 [![Maintainability](https://api.codeclimate.com/v1/badges/37609c390a1a9f602cab/maintainability)](https://codeclimate.com/github/malrefai/todos/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/37609c390a1a9f602cab/test_coverage)](https://codeclimate.com/github/malrefai/todos/test_coverage)  
+[![Test Coverage](https://api.codeclimate.com/v1/badges/37609c390a1a9f602cab/test_coverage)](https://codeclimate.com/github/malrefai/todos/test_coverage)
+[![codebeat badge](https://codebeat.co/badges/a5ab411e-22b3-484f-9df9-75ff6cb4345b)](https://codebeat.co/projects/github-com-malrefai-todos-develop)  
 
 
 This is just a simple ..     
