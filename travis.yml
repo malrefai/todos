@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+  - "2.4.2"
+before_script:
+  - sleep 15
+  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
+script:
+  - RAILS_ENV=test
+  - bundle exec rake ci:tests
+services:
+  - mongodb
+notifications:
+  email: false
