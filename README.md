@@ -1,7 +1,9 @@
 ## Todos App  
 
 [![Build Status](https://travis-ci.org/malrefai/todos.svg?branch=develop)](https://travis-ci.org/malrefai/todos)
-[![Coverage Status](https://coveralls.io/repos/github/malrefai/todos/badge.svg)](https://coveralls.io/github/malrefai/todos)  
+[![Coverage Status](https://coveralls.io/repos/github/malrefai/todos/badge.svg)](https://coveralls.io/github/malrefai/todos)
+[![Maintainability](https://api.codeclimate.com/v1/badges/37609c390a1a9f602cab/maintainability)](https://codeclimate.com/github/malrefai/todos/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/37609c390a1a9f602cab/test_coverage)](https://codeclimate.com/github/malrefai/todos/test_coverage)  
 
 
 This is just a simple ..     
