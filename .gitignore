@@ -7,6 +7,8 @@
 # jetBrains template
 /.idea
 /.idea/*
+.ruby-version
+.ruby-gemset
 
 # Ignore bundler config.
 /.bundle
