@@ -1,14 +1,22 @@
 language: ruby
 rvm:
-  - "2.4.2"
+  - 2.4.2
+env:
+  global:
+    secure: Gctoi9S+YUZgtH8PxeqtW3tCTTFykdlWk4hUptPE1g3SOerYea/M6eFe0mGUjIqDzKXms0Wde14Zo18MiOYN6ryIhXo71mq1rZ/w1y/tRO5SiwBPKVm8QgXbIAB/6XvxH6NfErJBmyUxpUzJ2o08ii/IzwRdy2wstPv3d1sQf8678Qhet3sKrf93gEk5SMRG/Hpzl9rjywLjGnycV7ooTGs6Ff3aPBXnQVXGcTdDey1R7XAMWD9p17mXD/SzzTpXpeZgqZAFwb3ylhLhBbvZSwKxtaO+HOPG+BmX82Pyxmor1/nGufqhTAgGHcKjvMb+/GS8+BuZyh0Z7t/0/14V1WBr8EF+VNVjJ85uIQaLR4oIGCtoShLlcv8xKQn7/lYDKYFo1XOIDbH9gBwLHqU3raSBMh9hQnSpzx/GMoBpKVh6PB2fH/oCP6zV1l/bY1mWzURxOEJp212dxEQxTeZpx5r2qQiYeZW3Z16+qgawngTfdwywvGwOcSpGF8MXTupaIq2J4WPmXo6/Zo16I83G8QSthGGik5FGfE+ZVPxZsVAzudg5hxxgACpjk4+XodaixiQISxsa2/FsdNBwB42jM/tfIDy9VeQ0DmJcaej/k38P6fUMZAd0EbVvjRNcu5Brcnmv/vanulme9400AXmSoL50VVnUvAVd9GXBCkUTW68=
 cache: bundler
 before_script:
   - sleep 15
   - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
   - bundle exec rubocop --auto-correct
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
   - RAILS_ENV=test
   - bundle exec rake ci:tests
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 services:
   - mongodb
 notifications:
