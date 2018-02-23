@@ -24,9 +24,13 @@ checks:
   return-statements:
     config:
       threshold: 4
+  similar-code:
+    config:
+      threshold: #language-specific defaults. overrides affect all languages.
+  identical-code:
+    config:
+      threshold: #language-specific defaults. overrides affect all languages.
 plugins:
-  brakeman:
-    enabled: true
   bundler-audit:
     enabled: true
   flog:
