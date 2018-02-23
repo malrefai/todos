@@ -1,7 +1,5 @@
 version: "2"         # required to adjust maintainability checks
 plugins:
-  brakeman:
-    enabled: true
   bundler-audit:
     enabled: true
   flog:
