@@ -59,6 +59,8 @@ group :test do
   gem "simplecov", require: false
   # Integration with Coveralls service for test metrics
   gem "coveralls", require: false
+  # code climate
+  gem "codeclimate-test-reporter", require: nil
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
