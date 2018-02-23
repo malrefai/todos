@@ -58,6 +58,8 @@ GEM
     bson (4.3.0)
     builder (3.2.3)
     byebug (10.0.0)
+    codeclimate-test-reporter (1.0.7)
+      simplecov
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
@@ -299,6 +301,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   byebug
+  codeclimate-test-reporter
   coveralls
   database_cleaner
   factory_bot_rails
