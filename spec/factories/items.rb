@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :item do
-    name "MyString"
-    done false
-    todo nil
+    name { Faker::Name.name }
+    done { Faker::Boolean.boolean }
+
+    association :todo, factory: :todo
   end
 end

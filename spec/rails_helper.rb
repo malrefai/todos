@@ -9,6 +9,8 @@ require "rspec/rails"
 # require database cleaner at the top level
 require "database_cleaner"
 
+require "mongoid-rspec"
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -54,18 +56,27 @@ RSpec.configure do |config|
   #
 
   # add `FactoryGirl` methods
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
-  # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
+  # add mongoid-rspec
+  config.include Mongoid::Matchers, type: :model
+
+  # # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.orm = "mongoid"
+    DatabaseCleaner.strategy = :truncation
   end
 
-  # start the transaction strategy as examples are run
-  config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
+  config.before(:each) do
+    DatabaseCleaner.start
   end
+
+  # config.after(:each) do
+  #   DatabaseCleaner.clean
+  # end
+
+  # # purge test database
+  # config.after(:suite) do
+  #   Mongoid.purge!
+  # end
 end

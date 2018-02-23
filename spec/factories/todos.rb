@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :todo do
-    title "MyString"
-    created_by "MyString"
+    title { Faker::Simpsons.quote }
+    created_by { Faker::Name.name }
   end
 end
