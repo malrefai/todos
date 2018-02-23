@@ -61,7 +61,7 @@ RSpec.configure do |config|
   # add mongoid-rspec
   config.include Mongoid::Matchers, type: :model
 
-  # # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
+  # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
     DatabaseCleaner.orm = "mongoid"
     DatabaseCleaner.strategy = :truncation
