@@ -6,10 +6,10 @@ require File.expand_path("../../config/environment", __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
+require "mongoid-rspec"
+
 # require database cleaner at the top level
 require "database_cleaner"
-
-require "mongoid-rspec"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -53,30 +53,39 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  #
 
-  # add `FactoryGirl` methods
-  config.include FactoryBot::Syntax::Methods
+  # include RequestSpecHelper for request spec
+  config.include RequestSpecHelper
 
-  # add mongoid-rspec
+  # include Mongoid::Matcher for model spec
   config.include Mongoid::Matchers, type: :model
 
-  # # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
+  # add "FactoryGirl" methods
+  config.include FactoryBot::Syntax::Methods
+
+  # start by truncating all the tables but then use
+  # the faster transaction strategy the rest of the time.
   config.before(:suite) do
     DatabaseCleaner.orm = "mongoid"
     DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.before(:each) do
-    DatabaseCleaner.start
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 
+  # config.before(:suite) do
+  #   DatabaseCleaner.strategy = :truncation
+  # end
+  #
+  # config.before(:each) do
+  #   DatabaseCleaner.start
+  # end
+  #
   # config.after(:each) do
   #   DatabaseCleaner.clean
-  # end
-
-  # # purge test database
-  # config.after(:suite) do
-  #   Mongoid.purge!
   # end
 end

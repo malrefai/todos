@@ -5,7 +5,6 @@ RSpec.describe Todo, type: :model do
     it { should be_mongoid_document }
     it { should have_timestamps }
     it { should have_fields(:title, :created_by) }
-    it { should embed_many(:items) }
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:created_by) }
   end

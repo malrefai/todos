@@ -30,12 +30,6 @@ group :development, :test do
   gem "rspec-rails"
   # Rubocop for rspec
   gem "rubocop-rspec", require: false
-  # Factory botc
-  gem "factory_bot_rails"
-  # Data faker
-  gem "faker"
-  # To clear test database between runs
-  gem "database_cleaner"
 end
 
 group :development do
@@ -50,11 +44,17 @@ end
 
 group :test do
   # Mongoid rspec
-  gem "mongoid-rspec", github: "mongoid-rspec/mongoid-rspec"
+  gem "mongoid-rspec"
   # shoulda matcher
   gem "shoulda-matchers"
   # JSON schema matcher
   gem "json-schema"
+  # Factory botc
+  gem "factory_bot_rails"
+  # Data faker
+  gem "faker"
+  # To clear test database between runs
+  gem "database_cleaner"
   # SimpleCov
   gem "simplecov", require: false
   # Integration with Coveralls service for test metrics

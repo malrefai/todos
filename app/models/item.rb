@@ -7,7 +7,7 @@ class Item
   field :done, type: Mongoid::Boolean
 
   # associations
-  embedded_in :todo
+  belongs_to :todo
 
   # validations
   validates_presence_of :name, :done
