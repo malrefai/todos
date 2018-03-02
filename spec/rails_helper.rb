@@ -55,7 +55,8 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   # include RequestSpecHelper for request spec
-  config.include RequestSpecHelper, type: :request
+  config.include RequestSpecHelper
+
 
   # include Mongoid::Matcher for model spec
   config.include Mongoid::Matchers, type: :model
@@ -63,22 +64,29 @@ RSpec.configure do |config|
   # add "FactoryGirl" methods
   config.include FactoryBot::Syntax::Methods
 
-  # # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
+  # start by truncating all the tables but then use
+  # the faster transaction strategy the rest of the time.
   config.before(:suite) do
     DatabaseCleaner.orm = "mongoid"
-    # DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.before(:each) do
-    DatabaseCleaner.start
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 
+  # config.before(:suite) do
+  #   DatabaseCleaner.strategy = :truncation
+  # end
+  #
+  # config.before(:each) do
+  #   DatabaseCleaner.start
+  # end
+  #
   # config.after(:each) do
   #   DatabaseCleaner.clean
-  # end
-
-  # # purge test database
-  # config.after(:suite) do
-  #   Mongoid.purge!
   # end
 end
