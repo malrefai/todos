@@ -41,7 +41,7 @@ RSpec.describe TodosController, type: :controller do
         expect(response).to have_http_status(:not_found)
       end
       it "returns a not found message" do
-        expect(response.body).to match(/Couldn't find Todo/)
+        expect(response.body).to match(/not found for class Todo /)
       end
     end
   end
@@ -68,15 +68,15 @@ RSpec.describe TodosController, type: :controller do
         expect(response).to have_http_status(:unprocessable_entity)
       end
       it "returns a validation failure message" do
-        expect(response.body)
-            .to match(/Validation failed: Created by can't be blank/)
+        expect(response.body).
+          to match(/Created by can't be blank/)
       end
     end
   end
 
   # test suite for PUT /api/todos/:id
   describe "PUT #update" do
-    let(:valid_attributes) { { id: todo_id ,title: "Shopping" } }
+    let(:valid_attributes) { { id: todo_id, title: "Shopping" } }
 
     context "when the record exists" do
       before { put :update, params: valid_attributes }
