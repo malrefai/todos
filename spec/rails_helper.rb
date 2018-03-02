@@ -57,7 +57,6 @@ RSpec.configure do |config|
   # include RequestSpecHelper for request spec
   config.include RequestSpecHelper
 
-
   # include Mongoid::Matcher for model spec
   config.include Mongoid::Matchers, type: :model
 
