@@ -9,7 +9,7 @@ development:
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - localhost:27017
+        - 127.0.0.1:27017
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
@@ -116,7 +116,7 @@ development:
 
     # Raise an error when performing a #find and the document is not found.
     # (default: true)
-    # raise_not_found_error: true
+    raise_not_found_error: false
 
     # Raise an error when defining a scope with the same name as an
     # existing method. (default: false)
@@ -146,11 +146,13 @@ development:
     # connection in server versions >= 3.4. Note that the name cannot exceed 128 bytes.
     # app_name: MyApplicationName
 test:
+  options:
+    raise_not_found_error: false
   clients:
     default:
       database: todos_api_test
       hosts:
-        - localhost:27017
+        - 127.0.0.1:27017
       options:
         read:
           mode: :primary
