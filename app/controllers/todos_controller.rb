@@ -1,6 +1,12 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: %i[show update destroy]
 
+  def initialize
+    super
+    @errors = []
+    @messages = []
+  end
+
   def index
     @todos = Todo.all
     json_response(@todos)
@@ -34,6 +40,6 @@ class TodosController < ApplicationController
   end
 
   def set_todo
-    @todo = Todo.find(params[:id])
+    @todo ||= Todo.find_by(id: params[:id])
   end
 end
