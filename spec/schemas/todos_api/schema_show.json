@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "created_by",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "object"
+    },
+    "title": {
+      "type": "string"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  }
+}
