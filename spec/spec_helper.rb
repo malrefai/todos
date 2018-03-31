@@ -19,6 +19,14 @@ require "mongoid-rspec"
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
+# api schema matcher configuration
+RSpec::Matchers.define :match_response_schema do |schema|
+  match do
+    schema_directory = "#{Dir.pwd}/spec/schemas"
+    schema_path = "#{schema_directory}/#{schema}.json"
+    JSON::Validator.validate!(schema_path, parsed_json, strict: true)
+  end
+end
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

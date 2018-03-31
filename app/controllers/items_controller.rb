@@ -3,21 +3,33 @@ class ItemsController < ApplicationController
   before_action :set_todo_item, only: %i[show update destroy]
 
   def index
-    json_response(@todo.items)
+    @items = @todo.items
+    json_response(@items, :ok)
   end
 
   def show
-    json_response(@item)
+    json_response(@item, :ok)
   end
 
   def create
-    @todo.items.create!(item_params)
-    json_response(@todo, :created)
+    @item = @todo.items.new(item_params)
+
+    if @item.valid?
+      @item.save
+      json_response(@item, :created)
+    else
+      @errors << I18n.t("mongoid.errors.models.item.create")
+      json_response(@errors, :unprocessable_entity)
+    end
   end
 
   def update
-    @item.update(item_params)
-    head :no_content
+    if @item.update(item_params)
+      json_response(@item, :ok)
+    else
+      @errors << I18n.t("mongoid.errors.models.item.update")
+      json_response(@errors, :unprocessable_entity)
+    end
   end
 
   def destroy
@@ -27,15 +39,15 @@ class ItemsController < ApplicationController
 
   private
 
+  def set_todo_item
+    @item ||= @todo&.items&.find_by(id: params[:id])
+    unless @item
+      @errors << I18n.t("mongoid.errors.models.item.unknown")
+      json_response(@errors, :not_found)
+    end
+  end
+
   def item_params
     params.permit(:name, :done)
-  end
-
-  def set_todo
-    @todo = Todo.find(params[:todo_id])
-  end
-
-  def set_todo_item
-    @item = @todo.items.find_by(id: params[:id]) if @todo
   end
 end

@@ -1,29 +1,34 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: %i[show update destroy]
-
-  def initialize
-    super
-    @errors = []
-    @messages = []
-  end
+  before_action -> { set_todo(:id) }, only: %i[show update destroy]
 
   def index
     @todos = Todo.all
-    json_response(@todos)
+    json_response(@todos, :ok)
   end
 
   def show
-    json_response(@todo)
+    json_response(@todo, :ok)
   end
 
   def create
-    @todo = Todo.create!(todo_params)
-    json_response(@todo, :created)
+    @todo = Todo.new(todo_params)
+
+    if @todo.valid?
+      @todo.save
+      json_response(@todo, :created)
+    else
+      @errors << I18n.t("mongoid.errors.models.todo.create")
+      json_response(@errors, :unprocessable_entity)
+    end
   end
 
   def update
-    @todo.update(todo_params)
-    head :no_content
+    if @todo.update(todo_params)
+      json_response(@todo, :ok)
+    else
+      @errors << I18n.t("mongoid.errors.models.todo.update")
+      json_response(@errors, :unprocessable_entity)
+    end
   end
 
   def destroy
@@ -33,13 +38,8 @@ class TodosController < ApplicationController
 
   private
 
-  # strong params
+  # strong params, white list params
   def todo_params
-    # white list params
     params.permit(:title, :created_by)
-  end
-
-  def set_todo
-    @todo ||= Todo.find_by(id: params[:id])
   end
 end

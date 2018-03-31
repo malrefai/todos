@@ -13,6 +13,8 @@ gem "mongoid", "~> 6.1.0"
 gem "puma", "~> 3.7"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.5"
+# Serializer
+gem "active_model_serializers", "~> 0.10.0"
 # Pagination
 gem "kaminari"
 gem "kaminari-mongoid"
@@ -28,18 +30,22 @@ group :development, :test do
   gem "awesome_print"
   # Rspec for rails
   gem "rspec-rails"
+  # Guard for Rspec
+  gem "guard-rspec", require: false
   # Rubocop for rspec
   gem "rubocop-rspec", require: false
+  # travisCI
+  gem "travis"
 end
 
 group :development do
   gem "listen", ">= 3.0.5", "< 3.2"
   gem "web-console", ">= 3.3.0"
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  # Spring speeds up development,
+  # by keeping your application running in the background.
+  # Read more: https://github.com/rails/spring
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
-  # travisCI
-  gem "travis"
 end
 
 group :test do

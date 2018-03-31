@@ -60,7 +60,7 @@ RSpec.configure do |config|
   # include Mongoid::Matcher for model spec
   config.include Mongoid::Matchers, type: :model
 
-  # add "FactoryGirl" methods
+  # add "FactoryBot" methods
   config.include FactoryBot::Syntax::Methods
 
   # start by truncating all the tables but then use
@@ -76,16 +76,4 @@ RSpec.configure do |config|
       example.run
     end
   end
-
-  # config.before(:suite) do
-  #   DatabaseCleaner.strategy = :truncation
-  # end
-  #
-  # config.before(:each) do
-  #   DatabaseCleaner.start
-  # end
-  #
-  # config.after(:each) do
-  #   DatabaseCleaner.clean
-  # end
 end
