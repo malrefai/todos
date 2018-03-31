@@ -15,7 +15,7 @@ RSpec.describe ItemsController, type: :controller do
   describe "GET #index" do
     let(:params) do
       {
-          todo_id: todo_id,
+        todo_id: todo_id,
       }
     end
 
@@ -46,17 +46,15 @@ RSpec.describe ItemsController, type: :controller do
                          :not_found,
                          I18n.t("mongoid.errors.models.todo.unknown")
       end
-
     end
   end
-
 
   # test suite for GET api/todos/:todo_id/items/:id
   describe "GET #show" do
     let(:params) do
       {
-          todo_id: todo_id,
-          id: item_id,
+        todo_id: todo_id,
+        id: item_id,
       }
     end
 
@@ -96,15 +94,14 @@ RSpec.describe ItemsController, type: :controller do
   describe "POST #create" do
     let(:params) do
       {
-          todo_id: todo_id,
-          name: name,
-          done: done,
+        todo_id: todo_id,
+        name: name,
+        done: done,
       }
     end
 
     context "when the request is valid" do
       before { post :create, params: params }
-
 
       include_examples "valid_request",
                        :created,
@@ -145,16 +142,15 @@ RSpec.describe ItemsController, type: :controller do
   describe "PUT #update" do
     let(:params) do
       {
-          todo_id: todo_id,
-          id: item_id,
-          name: name,
-          done: done,
+        todo_id: todo_id,
+        id: item_id,
+        name: name,
+        done: done,
       }
     end
 
     context "when the request is valid" do
       before { put :update, params: params }
-
 
       include_examples "valid_request",
                        :ok,
@@ -199,8 +195,8 @@ RSpec.describe ItemsController, type: :controller do
   describe "DELETE #destroy" do
     let(:params) do
       {
-          todo_id: todo_id,
-          id: item_id,
+        todo_id: todo_id,
+        id: item_id,
       }
     end
 

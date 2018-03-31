@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
       json_response(@item, :ok)
     else
       @errors << I18n.t("mongoid.errors.models.item.update")
-      json_response(@errors,:unprocessable_entity)
+      json_response(@errors, :unprocessable_entity)
     end
   end
 
@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
   private
 
   def set_todo_item
-    @item ||= @todo&.items.find_by(id: params[:id])
+    @item ||= @todo&.items&.find_by(id: params[:id])
     unless @item
       @errors << I18n.t("mongoid.errors.models.item.unknown")
       json_response(@errors, :not_found)

@@ -14,7 +14,7 @@ gem "puma", "~> 3.7"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.5"
 # Serializer
-gem 'active_model_serializers', '~> 0.10.0'
+gem "active_model_serializers", "~> 0.10.0"
 # Pagination
 gem "kaminari"
 gem "kaminari-mongoid"

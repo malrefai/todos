@@ -23,7 +23,7 @@
 #                          installed the spring binstubs per the docs)
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
-
+#
 guard :rspec, cmd: "bundle exec rspec" do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
@@ -49,7 +49,7 @@ guard :rspec, cmd: "bundle exec rspec" do
     [
       rspec.spec.call("routing/#{m[1]}_routing"),
       rspec.spec.call("requests/#{m[1]}_request"),
-      rspec.spec.call("acceptance/#{m[1]}")
+      rspec.spec.call("acceptance/#{m[1]}"),
     ]
   end
 

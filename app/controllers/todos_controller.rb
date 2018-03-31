@@ -27,7 +27,7 @@ class TodosController < ApplicationController
       json_response(@todo, :ok)
     else
       @errors << I18n.t("mongoid.errors.models.todo.update")
-      json_response(@errors,:unprocessable_entity)
+      json_response(@errors, :unprocessable_entity)
     end
   end
 

@@ -11,7 +11,7 @@ RSpec.describe TodosController, type: :controller do
 
   # test suite for GET /api/todos
   describe "GET #index" do
-    let(:params) { { } }
+    let(:params) { {} }
 
     context "when the request is valid" do
       # make HTTP get request before each example
@@ -39,7 +39,7 @@ RSpec.describe TodosController, type: :controller do
   describe "GET #show" do
     let(:params) do
       {
-          id: todo_id,
+        id: todo_id,
       }
     end
 
@@ -71,14 +71,13 @@ RSpec.describe TodosController, type: :controller do
   describe "POST #create" do
     let(:params) do
       {
-          title: title,
-          created_by: created_by,
+        title: title,
+        created_by: created_by,
       }
     end
 
     context "when the request is valid" do
       before { post :create, params: params }
-
 
       include_examples "valid_request",
                        :created,
@@ -121,15 +120,14 @@ RSpec.describe TodosController, type: :controller do
   describe "PUT #update" do
     let(:params) do
       {
-          id: todo_id,
-          title: title,
-          created_by: created_by,
+        id: todo_id,
+        title: title,
+        created_by: created_by,
       }
     end
 
     context "when the request is valid" do
       before { put :update, params: params }
-
 
       include_examples "valid_request",
                        :ok,
@@ -180,7 +178,7 @@ RSpec.describe TodosController, type: :controller do
   describe "DELETE #destroy" do
     let(:params) do
       {
-          id: todo_id,
+        id: todo_id,
       }
     end
 
