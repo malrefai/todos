@@ -1,0 +1,22 @@
+en:
+  mongoid:
+    models:
+      todo:
+        one: "Todo"
+        other: "Todos"
+    attributes:
+      todo:
+        owner: "Contest owner"
+        name: "Name"
+        submitter_count: "Submitter count"
+    errors:
+      models:
+        todo:
+          unknown: "The todo you are looking for doesn't exist."
+          create: "."
+          update: "."
+    messages:
+      models:
+        todo:
+          create: "."
+          update: "."
