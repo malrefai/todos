@@ -2,9 +2,9 @@ require "rails_helper"
 
 RSpec.describe TodosController, type: :controller do
   # initialize test data
-  let!(:todos) { FactoryBot.create_list(:todo, 10) }
-  let!(:todo) { todos.first }
-  let!(:old_todos_count) { Todo.all.count }
+  let(:todos) { FactoryBot.create_list(:todo, rand(2..10)) }
+  let(:todo) { todos.first }
+  let(:old_todos_count) { todos.count }
   let(:todo_id) { todo.id }
   let(:title) { Faker::FamilyGuy.character }
   let(:created_by) { Faker::Number.number(10) }
@@ -15,11 +15,14 @@ RSpec.describe TodosController, type: :controller do
 
     context "when the request is valid" do
       # make HTTP get request before each example
-      before { get :index, params: params }
+      before do
+        todos
+        get :index, params: params
+      end
 
       include_examples "valid_request",
                        :ok,
-                       "todos_api/schema_index"
+                       "todos_api/index"
 
       it "returns all objects" do
         # Note `json` is a custom helper to parse JSON response
@@ -48,7 +51,7 @@ RSpec.describe TodosController, type: :controller do
 
       include_examples "valid_request",
                        :ok,
-                       "todos_api/schema_show"
+                       "todos_api/show"
     end
     context "when the request is invalid" do
       context "unauthorized user" do
@@ -77,11 +80,14 @@ RSpec.describe TodosController, type: :controller do
     end
 
     context "when the request is valid" do
-      before { post :create, params: params }
+      before do
+        old_todos_count
+        post :create, params: params
+      end
 
       include_examples "valid_request",
                        :created,
-                       "todos_api/schema_create"
+                       "todos_api/create"
 
       it "creates object in the database" do
         expect(Todo.all.count).to eq old_todos_count + 1
@@ -131,7 +137,7 @@ RSpec.describe TodosController, type: :controller do
 
       include_examples "valid_request",
                        :ok,
-                       "todos_api/schema_update"
+                       "todos_api/update"
 
       # it "updates object in the database" do
       #   expect(assigns(:todo)).to eq
