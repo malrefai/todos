@@ -150,7 +150,7 @@ test:
     raise_not_found_error: false
   clients:
     default:
-      database: todos_api_test
+      database: todos_api_test<%= ENV['TEST_ENV_NUMBER'] %>
       hosts:
         - 127.0.0.1:27017
       options:
