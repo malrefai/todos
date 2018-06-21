@@ -25,13 +25,15 @@ This is just a simple ..
 ### 2. Install [Ruby 2.4.2][1]
     $ rvm install 2.4.2
     
-### 3. Create new gemset and use it
-    $ rvm use 2.4.2@todos --create
-    
-### 4. Clone the repository
-	$ git clone git@github.com:malrefai/todos.git <YOUR_PROJECT_DIR>
+### 3. Fork then clone the repository
+Fork repository to your github account
+
+	$ git clone git@github.com:<GITHUB_ACCOUNT>/todos.git <YOUR_PROJECT_DIR>
 	$ cd <YOUR_PROJECT_DIR>
 	
+### 4. Create new gemset and use it
+    $ rvm use 2.4.2@todos --create --ruby-version
+    
 ### 5. Install bundle
     $ gem install bundle
 
@@ -54,7 +56,7 @@ Make sure you install all the required dependencies before running app.
 The app
 
 ## Copyright
-Copyright (c) 2018 Moh'd Alrefai. See LICENSE.txt for further details.
+Copyright (c) 2018 Mohammad Alrefai. See LICENSE.txt for further details.
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmalrefai%2Ftodos.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmalrefai%2Ftodos?ref=badge_large)
