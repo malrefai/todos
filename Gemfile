@@ -30,6 +30,8 @@ group :development, :test do
   gem "awesome_print"
   # Rspec for rails
   gem "rspec-rails"
+  # Parallel rspec tests
+  gem "parallel_tests"
   # Guard for Rspec
   gem "guard-rspec", require: false
   # Rubocop for rspec
