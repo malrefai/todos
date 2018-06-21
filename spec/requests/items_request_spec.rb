@@ -2,10 +2,10 @@ require "rails_helper"
 
 RSpec.describe ItemsController, type: :controller do
   # initialize the test data
-  let!(:todo) { FactoryBot.create(:todo) }
-  let!(:items) { FactoryBot.create_list(:item, 20, todo: todo) }
-  let!(:item) { items.first }
-  let!(:old_items_count) { Item.all.count }
+  let(:todo) { FactoryBot.create(:todo) }
+  let(:items) { FactoryBot.create_list(:item, rand(2..10), todo: todo) }
+  let(:item) { items.first }
+  let(:old_items_count) { items.count }
   let(:todo_id) { todo.id }
   let(:item_id) { item.id }
   let(:name) { Faker::Simpsons.character }
@@ -21,15 +21,18 @@ RSpec.describe ItemsController, type: :controller do
 
     context "when the request is valid" do
       # make HTTP get request before each example
-      before { get :index, params: params }
+      before do
+        items
+        get :index, params: params
+      end
 
       include_examples "valid_request",
                        :ok,
-                       "items_api/schema_index"
+                       "items_api/index"
 
       it "returns all objects" do
         # Note `json` is a custom helper to parse JSON response
-        expect(parsed_json.size).to eq(items.size)
+        expect(parsed_json.size).to eq(items.count)
       end
     end
     context "when the request is invalid" do
@@ -63,7 +66,7 @@ RSpec.describe ItemsController, type: :controller do
 
       include_examples "valid_request",
                        :ok,
-                       "items_api/schema_show"
+                       "items_api/show"
     end
     context "when the request is invalid" do
       context "unauthorized user" do
@@ -101,11 +104,14 @@ RSpec.describe ItemsController, type: :controller do
     end
 
     context "when the request is valid" do
-      before { post :create, params: params }
+      before do
+        old_items_count
+        post :create, params: params
+      end
 
       include_examples "valid_request",
                        :created,
-                       "items_api/schema_create"
+                       "items_api/create"
 
       it "creates object in the database" do
         expect(Item.all.count).to eq old_items_count + 1
@@ -154,7 +160,7 @@ RSpec.describe ItemsController, type: :controller do
 
       include_examples "valid_request",
                        :ok,
-                       "items_api/schema_update"
+                       "items_api/update"
     end
     context "when the request is invalid" do
       context "unauthorized user" do
