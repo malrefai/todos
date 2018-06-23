@@ -11,6 +11,10 @@ gem "rails", "~> 5.1.4"
 gem "mongoid", "~> 6.1.0"
 # Use Puma as the app server
 gem "puma", "~> 3.7"
+# Use ActiveModel has_secure_password
+gem "bcrypt"
+# Use Json Web Token
+gem "jwt"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.5"
 # Serializer
