@@ -54,8 +54,11 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # include RequestSpecHelper for request spec
+  # include RequestSpecHelper for specs
   config.include RequestSpecHelper
+
+  # include ControllerSpecHelper for specs
+  config.include ControllerSpecHelper
 
   # include Mongoid::Matcher for model spec
   config.include Mongoid::Matchers, type: :model
